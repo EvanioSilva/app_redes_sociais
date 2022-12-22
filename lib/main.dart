@@ -1,6 +1,9 @@
 import 'package:app_redes_sociais/posts/detalhes_post.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'controllers/main_controller.dart';
 import 'login/login_page.dart';
 
 void main() {
@@ -13,19 +16,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'App Redes Sociais',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      initialBinding: BindingsBuilder((){
+        Get.put(MainController());
+      }),
       home: const LoginPage(),
     );
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+  MainController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -46,68 +53,75 @@ class HomePage extends StatelessWidget {
       ),
 
       // Corpo
-      body: Container(
-        child: ListView(
-          children: [
-            // Primeiro Item
-            ListTile(
-              title: Text('Vejam minha nova coleção inverno'),
-              trailing: IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                    return DetalhesPostPage(
-                        titulo: 'Vejam minha nova coleção inverno',
-                        imagem : 'camisa.svg'
-                    );
-                  }));
-                },
-              ),
-              leading:  CircleAvatar(
-                backgroundColor: Colors.teal,
-                child: SvgPicture.asset('assets/images/rosto-homem.svg'),
-              ),
+      body: GetBuilder<MainController>(
+        builder: (context) {
+          return Container(
+            child: ListView(
+              children: [
+                // Primeiro Item
+                ListTile(
+                  title: Text('Vejam minha nova coleção inverno'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () {
+                      Get.to(DetalhesPostPage(
+                            titulo: 'Vejam minha nova coleção inverno',
+                            imagem : 'camisa.svg'
+                      ));
+                      controller.notificacoes --;
+                      controller.update();
+                    },
+                  ),
+                  leading: Badge(
+                    showBadge: controller.notificacoes > 0,
+                    badgeContent: Text(controller.notificacoes.toString(), style: TextStyle(color: Colors.white),),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.teal,
+                      child: SvgPicture.asset('assets/images/rosto-homem.svg'),
+                    ),
+                  ),
+                ),
+                // Segundo Item
+                ListTile(
+                  title: Text('Passeio no final de semana'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () {
+                      Get.to(
+                        DetalhesPostPage(
+                            titulo: 'Passeio no final de semana',
+                            imagem : 'praia.svg'
+                      ));
+                    },
+                  ),
+                  leading:  CircleAvatar(
+                    backgroundColor: Colors.teal,
+                    child: SvgPicture.asset('assets/images/rosto-mulher.svg'),
+                  ),
+                ),
+                // Terceiro Item
+                ListTile(
+                  title: Text('Siga-nos no insta...'),
+                  trailing: IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () {
+                      Get.to(
+                        DetalhesPostPage(
+                            titulo: 'Siga-nos no insta...',
+                            imagem : 'insta.svg'
+
+                      ));
+                    },
+                  ),
+                  leading:  CircleAvatar(
+                    backgroundColor: Colors.teal,
+                    child: SvgPicture.asset('assets/images/rosto-jovem.svg'),
+                  ),
+                ),
+              ],
             ),
-            // Segundo Item
-            ListTile(
-              title: Text('Passeio no final de semana'),
-              trailing: IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                    return DetalhesPostPage(
-                        titulo: 'Passeio no final de semana',
-                        imagem : 'praia.svg'
-                    );
-                  }));
-                },
-              ),
-              leading:  CircleAvatar(
-                backgroundColor: Colors.teal,
-                child: SvgPicture.asset('assets/images/rosto-mulher.svg'),
-              ),
-            ),
-            // Terceiro Item
-            ListTile(
-              title: Text('Siga-nos no insta...'),
-              trailing: IconButton(
-                icon: Icon(Icons.send),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                    return DetalhesPostPage(
-                        titulo: 'Siga-nos no insta...',
-                        imagem : 'insta.svg'
-                    );
-                  }));
-                },
-              ),
-              leading:  CircleAvatar(
-                backgroundColor: Colors.teal,
-                child: SvgPicture.asset('assets/images/rosto-jovem.svg'),
-              ),
-            ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
