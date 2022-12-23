@@ -3,6 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'api/api_connect.dart';
 import 'controllers/main_controller.dart';
 import 'login/login_page.dart';
 
@@ -70,6 +71,12 @@ class HomePage extends StatelessWidget {
                       ));
                       controller.notificacoes --;
                       controller.update();
+
+                      ApiConnect api = ApiConnect();
+                      print('autenticar');
+
+                      api.listarPosts(0);
+
                     },
                   ),
                   leading: Badge(
