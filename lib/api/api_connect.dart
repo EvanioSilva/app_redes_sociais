@@ -7,7 +7,7 @@ class ApiConnect extends GetConnect {
   /// url default da api
   String defaultUrl = 'https://pray4ever.com/curso';
 
-  Future<Usuario?> autenticar(String login, String senha) async {
+  Future<UsuarioModel?> autenticar(String login, String senha) async {
     var usuario = null;
 
     Map body = {"login": login, "senha": senha};
@@ -26,7 +26,7 @@ class ApiConnect extends GetConnect {
     print(response.body.toString());
 
     if (response.status.code == 200) {
-      usuario = Usuario.fromJson(response.body);
+      usuario = UsuarioModel.fromJson(response.body);
       print(usuario);
     }
 

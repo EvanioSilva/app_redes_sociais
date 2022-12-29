@@ -6,7 +6,7 @@ class PostModel {
   int? idUsuario;
   String? data;
   String? imagem;
-  Usuario? usuarioPost;
+  UsuarioModel? usuarioPost;
 
   PostModel(
       {this.id,
@@ -23,7 +23,7 @@ class PostModel {
     data = json['data'];
     imagem = json['imagem'];
     usuarioPost = json['usuarioPost'] != null
-        ? new Usuario.fromJson(json['usuarioPost'])
+        ? new UsuarioModel.fromJson(json['usuarioPost'])
         : null;
   }
 

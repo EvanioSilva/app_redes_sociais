@@ -10,7 +10,7 @@ class MainController extends GetxController{
   List<PostModel> posts = [];
 
   Future<void> autenticar(String login, String senha) async {
-    Usuario? usuario;
+    UsuarioModel? usuario;
 
     // Instância Api
     ApiConnect api = ApiConnect();

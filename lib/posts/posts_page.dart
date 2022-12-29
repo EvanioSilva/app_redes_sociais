@@ -1,5 +1,6 @@
 import 'package:app_redes_sociais/controllers/main_controller.dart';
 import 'package:app_redes_sociais/models/post.dart';
+import 'package:app_redes_sociais/models/usuario.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -45,8 +46,7 @@ class PostsPage extends StatelessWidget {
                     itemCount: controller.posts.length,
                     itemBuilder: (context, index) {
                       PostModel post = controller.posts[index];
-                      print('post.usuarioPost!.avatar!');
-                      print(post.usuarioPost!.avatar!);
+                      UsuarioModel usuario = post.usuarioPost!;
                       return ListTile(
                         title: Text(post.texto!),
                         trailing: IconButton(
@@ -56,18 +56,17 @@ class PostsPage extends StatelessWidget {
                                 titulo: post.texto!,
                                 imagem: post.imagem,
                             ));
-                            controller.notificacoes --;
+                            usuario.notificacoes --;
                             controller.update();
                           },
                         ),
                         leading: Badge(
-                          showBadge: controller.notificacoes > 0,
-                          badgeContent: Text(controller.notificacoes.toString(),
+                          showBadge: usuario.notificacoes > 0,
+                          badgeContent: Text(usuario.notificacoes.toString(),
                             style: TextStyle(color: Colors.white),),
                           child: CircleAvatar(
                             backgroundColor: Colors.teal,
-                            child: SvgPicture.network(
-                                post.usuarioPost!.avatar!),
+                            child: SvgPicture.network(usuario.avatar!),
                           ),
                         ),
                       );
