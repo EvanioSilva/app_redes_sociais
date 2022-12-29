@@ -7,7 +7,7 @@ class ApiConnect extends GetConnect {
   /// url default da api
   String defaultUrl = 'https://pray4ever.com/curso';
 
-  Future<UsuarioModel?> autenticar(String login, String senha) async {
+  Future<Usuario?> autenticar(String login, String senha) async {
     var usuario = null;
 
     Map body = {"login": login, "senha": senha};
@@ -26,14 +26,14 @@ class ApiConnect extends GetConnect {
     print(response.body.toString());
 
     if (response.status.code == 200) {
-      usuario = UsuarioModel.fromJson(response.body);
+      usuario = Usuario.fromJson(response.body);
       print(usuario);
     }
 
     return usuario;
   }
 
-  Future<List<PostModel>> listarPosts(int id) async {
+  Future<List<Post>> listarPosts(int id) async {
     String url = '$defaultUrl/posts/listar/${id}';
     print(url);
 
@@ -41,9 +41,9 @@ class ApiConnect extends GetConnect {
       (error) {},
     );
 
-    List<PostModel> lista = [];
+    List<Post> lista = [];
     lista.addAll((response.body as List)
-        .map((item) => PostModel.fromJson(item))
+        .map((item) => Post.fromJson(item))
         .toList());
 
     return lista;

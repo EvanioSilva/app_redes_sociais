@@ -1,14 +1,14 @@
 import 'usuario.dart';
 
-class PostModel {
+class Post {
   int? id;
   String? texto;
   int? idUsuario;
   String? data;
   String? imagem;
-  UsuarioModel? usuarioPost;
+  Usuario? usuarioPost;
 
-  PostModel(
+  Post(
       {this.id,
         this.texto,
         this.idUsuario,
@@ -16,14 +16,14 @@ class PostModel {
         this.imagem,
         this.usuarioPost});
 
-  PostModel.fromJson(Map<String, dynamic> json) {
+  Post.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     texto = json['texto'];
     idUsuario = json['idUsuario'];
     data = json['data'];
     imagem = json['imagem'];
     usuarioPost = json['usuarioPost'] != null
-        ? new UsuarioModel.fromJson(json['usuarioPost'])
+        ? new Usuario.fromJson(json['usuarioPost'])
         : null;
   }
 

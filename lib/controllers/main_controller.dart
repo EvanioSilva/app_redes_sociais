@@ -7,10 +7,10 @@ import 'package:get/get.dart';
 
 class MainController extends GetxController{
   int notificacoes = 1;
-  List<PostModel> posts = [];
+  List<Post> posts = [];
 
   Future<void> autenticar(String login, String senha) async {
-    UsuarioModel? usuario;
+    Usuario? usuario;
 
     // Instância Api
     ApiConnect api = ApiConnect();

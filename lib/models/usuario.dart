@@ -1,4 +1,4 @@
-class UsuarioModel {
+class Usuario {
   int? id;
   String? login;
   String? senha;
@@ -6,9 +6,9 @@ class UsuarioModel {
   String? avatar;
   int notificacoes = 1;
 
-  UsuarioModel({this.id, this.login, this.senha, this.nome, this.avatar});
+  Usuario({this.id, this.login, this.senha, this.nome, this.avatar});
 
-  UsuarioModel.fromJson(Map<String, dynamic> json) {
+  Usuario.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     login = json['login'];
     senha = json['senha'];

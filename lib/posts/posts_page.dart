@@ -45,8 +45,8 @@ class PostsPage extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: controller.posts.length,
                     itemBuilder: (context, index) {
-                      PostModel post = controller.posts[index];
-                      UsuarioModel usuario = post.usuarioPost!;
+                      Post post = controller.posts[index];
+                      Usuario usuario = post.usuarioPost!;
                       return ListTile(
                         title: Text(post.texto!),
                         trailing: IconButton(
