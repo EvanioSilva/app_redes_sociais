@@ -1,7 +1,7 @@
 class Usuario {
   int? id;
-  Null? login;
-  Null? senha;
+  String? login;
+  String? senha;
   String? nome;
   String? avatar;
 

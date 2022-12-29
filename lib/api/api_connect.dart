@@ -25,7 +25,7 @@ class ApiConnect extends GetConnect {
 
     print(response.body.toString());
 
-    if (response.status == 200) {
+    if (response.status.code == 200) {
       usuario = Usuario.fromJson(response.body);
       print(usuario);
     }

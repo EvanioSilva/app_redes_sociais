@@ -22,7 +22,7 @@ class DetalhesPostPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                SvgPicture.asset('assets/images/${imagem}',
+                SvgPicture.network(imagem!,
                   height: 200, width: 200,
                 ),
               ],

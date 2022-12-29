@@ -1,8 +1,11 @@
-import 'package:app_redes_sociais/main.dart';
+import 'package:app_redes_sociais/controllers/main_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+
+  String login = '';
+  String senha = '';
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +16,17 @@ class LoginPage extends StatelessWidget {
         child: Column(
           children: [
             TextFormField(
+              onChanged: (value) {
+                login = value;
+              },
               decoration: InputDecoration(
                 labelText: 'Login'
               ),
             ),
             TextFormField(
+              onChanged: (value) {
+                senha = value;
+              },
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Senha'
@@ -28,9 +37,8 @@ class LoginPage extends StatelessWidget {
       ),
       bottomSheet: MaterialButton(
         onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context){
-            return HomePage();
-          }));
+          MainController controller = Get.find();
+          controller.autenticar(login, senha);
         },
         color: Colors.blue,
         height: 50,
