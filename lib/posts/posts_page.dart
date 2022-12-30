@@ -5,7 +5,6 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import 'detalhes_post.dart';
 
 class PostsPage extends StatelessWidget {
