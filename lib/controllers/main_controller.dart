@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MainController extends GetxController{
-  int notificacoes = 1;
+  // Posts devolvidos através da API
   List<Post> posts = [];
 
+  // Autenticar Usuário
   Future<void> autenticar(String login, String senha) async {
     Usuario? usuario;
 
@@ -26,6 +27,7 @@ class MainController extends GetxController{
     }
   }
 
+  // Listar Posts
   Future<void> listarPosts(int parametro) async {
     ApiConnect api = ApiConnect();
     posts = await api.listarPosts(parametro);
@@ -35,8 +37,10 @@ class MainController extends GetxController{
     }
   }
 
+  // Construção da página
   void onPageBuilder() async {
     await listarPosts(0);
+    // Refresh UI
     update();
   }
 

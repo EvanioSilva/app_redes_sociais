@@ -14,8 +14,6 @@ class ApiConnect extends GetConnect {
 
     String url = '$defaultUrl/usuario/autenticar';
 
-    print(url);
-
     Response response = await post(url, body,
         ).catchError(
       (error) {
@@ -23,11 +21,8 @@ class ApiConnect extends GetConnect {
       },
     );
 
-    print(response.body.toString());
-
     if (response.status.code == 200) {
       usuario = Usuario.fromJson(response.body);
-      print(usuario);
     }
 
     return usuario;
@@ -35,7 +30,6 @@ class ApiConnect extends GetConnect {
 
   Future<List<Post>> listarPosts(int id) async {
     String url = '$defaultUrl/posts/listar/${id}';
-    print(url);
 
     Response response = await get(url).catchError(
       (error) {},
