@@ -38,7 +38,6 @@ class ApiConnect extends GetConnect{
     Response response = await get(url).catchError(
           (error) {},
     );
-
     // OK
     if (response.status.code == 200) {
       lista.addAll((response.body as List)

@@ -1,4 +1,6 @@
 import 'package:app_redes_sociais/api/api_connect.dart';
+import 'package:app_redes_sociais/data/database.dart';
+import 'package:app_redes_sociais/data/store.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:app_redes_sociais/models/usuario_model.dart';
 import 'package:app_redes_sociais/posts/posts_page.dart';
@@ -8,6 +10,14 @@ import 'package:get/get.dart';
 class MainController extends GetxController{
   // Lista de Posts
   List<Post> posts = [];
+
+  @override
+  void onInit() {
+    // inicializa o BD
+    database.initializeDB();
+
+    super.onInit();
+  }
 
   Future<void> autenticar(String login, String senha) async {
     Usuario? usuario;
@@ -33,6 +43,27 @@ class MainController extends GetxController{
 
     // Refresh UI
     update();
+  }
+
+  /// Acesso BD
+  Future<Usuario?> findUsuarioBD(int id) async {
+    var store = Store();
+    var result = await store.findUsuario(id);
+
+    return result != [] ? Usuario.fromJson(result) : null;
+  }
+
+  Future<List<Post>> listaPostsBD() async {
+    List<Post> lista = [];
+
+    var store = Store();
+    var result = await store.listPosts();
+
+    lista.addAll((result as List)
+        .map((item) => Post.fromJson(item))
+        .toList());
+
+    return lista;
   }
 
 }
