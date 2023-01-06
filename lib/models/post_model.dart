@@ -39,6 +39,25 @@ class Post {
     }
     return data;
   }
+
+  Post.fromMap(Map<String, dynamic> map) {
+    id = map['id'];
+    texto = map['texto'];
+    idUsuario = map['idUsuario'];
+    data = map['data'];
+    imagem = map['imagem'];
+  }
+
+  Map<String, dynamic> toMap() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['texto'] = this.texto;
+    data['idUsuario'] = this.idUsuario;
+    data['data'] = this.data;
+    data['imagem'] = this.imagem;
+
+    return data;
+  }
 }
 
 

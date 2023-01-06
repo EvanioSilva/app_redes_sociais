@@ -1,20 +1,25 @@
 import 'package:app_redes_sociais/api/api_connect.dart';
-import 'package:app_redes_sociais/data/database.dart';
+import 'package:app_redes_sociais/data/db_service.dart';
 import 'package:app_redes_sociais/data/store.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:app_redes_sociais/models/usuario_model.dart';
 import 'package:app_redes_sociais/posts/posts_page.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sqflite/sqflite.dart';
 
 class MainController extends GetxController{
-  // Lista de Posts
+  /// A referência ao objeto de da conexão com o banco de dados
+  late Database database;
+
+  /// Lista de Posts
   List<Post> posts = [];
 
   @override
-  void onInit() {
+  void onInit() async {
     // inicializa o BD
-    database.initializeDB();
+    database = await DBService().database;
 
     super.onInit();
   }
@@ -38,32 +43,41 @@ class MainController extends GetxController{
   }
 
   Future<void> listarPosts(int id) async {
-    ApiConnect apiConnect = ApiConnect();
-    posts = await apiConnect.listarPosts(id);
+
+    List<Post> auxPosts = [];
+
+    // Api
+    if (await conexaoWebOK()) {
+      ApiConnect apiConnect = ApiConnect();
+      auxPosts = await apiConnect.listarPosts(id);
+    }
+
+    // BD
+    var store = Store();
+    await Future.forEach(auxPosts, (Post post) {
+      // Insere Post se n existir
+      if (store.findPost(post.id!) == null)
+        store.insertPost(post);
+
+      // Insere Usuário se n existir
+      if (store.findUsuario(post.idUsuario!) == null)
+        store.insertUsuario(post.usuarioPost!);
+      }
+
+    );
+
+    // Buscar do BD
+    posts = await store.listPosts();
 
     // Refresh UI
     update();
   }
 
-  /// Acesso BD
-  Future<Usuario?> findUsuarioBD(int id) async {
-    var store = Store();
-    var result = await store.findUsuario(id);
+  /// Verifica se existe conexâo com a internet
+  Future<bool> conexaoWebOK() async {
+    var result = await Connectivity().checkConnectivity();
 
-    return result != [] ? Usuario.fromJson(result) : null;
-  }
-
-  Future<List<Post>> listaPostsBD() async {
-    List<Post> lista = [];
-
-    var store = Store();
-    var result = await store.listPosts();
-
-    lista.addAll((result as List)
-        .map((item) => Post.fromJson(item))
-        .toList());
-
-    return lista;
+    return result != ConnectivityResult.none;
   }
 
 }

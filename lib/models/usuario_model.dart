@@ -33,4 +33,8 @@ class Usuario {
     data['notificacoes'] = this.notificacoes;
     return data;
   }
+
+  Map<String, dynamic> toMap() {
+    return toJson();
+  }
 }
