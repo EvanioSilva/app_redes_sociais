@@ -43,7 +43,7 @@ class Post {
   Post.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     texto = map['texto'];
-    idUsuario = map['idUsuario'];
+    idUsuario = map['id_usuario'];
     data = map['data'];
     imagem = map['imagem'];
   }
@@ -52,7 +52,7 @@ class Post {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['texto'] = this.texto;
-    data['idUsuario'] = this.idUsuario;
+    data['id_usuario'] = this.idUsuario;
     data['data'] = this.data;
     data['imagem'] = this.imagem;
 

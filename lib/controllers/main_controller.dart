@@ -54,16 +54,15 @@ class MainController extends GetxController{
 
     // BD
     var store = Store();
-    await Future.forEach(auxPosts, (Post post) {
-      // Insere Post se n existir
-      if (store.findPost(post.id!) == null)
-        store.insertPost(post);
-
+    await Future.forEach(auxPosts, (Post post) async {
       // Insere Usuário se n existir
-      if (store.findUsuario(post.idUsuario!) == null)
-        store.insertUsuario(post.usuarioPost!);
-      }
+      if (await store.findUsuario(post.idUsuario!) == null)
+        await store.insertUsuario(post.usuarioPost!);
 
+      // Insere Post se n existir
+      if (await store.findPost(post.id!) == null)
+        await store.insertPost(post);
+      }
     );
 
     // Buscar do BD

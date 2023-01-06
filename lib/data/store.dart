@@ -28,7 +28,7 @@ class Store {
     lista = List.generate(
       results.length,
           (i) {
-        return Post.fromJson(results[i]);
+        return Post.fromMap(results[i]);
       },
     );
 
