@@ -44,17 +44,17 @@ class MainController extends GetxController{
 
   Future<void> listarPosts(int id) async {
 
-    List<Post> auxPosts = [];
+    List<Post> postsApi = [];
 
     // Api
     if (await conexaoWebOK()) {
       ApiConnect apiConnect = ApiConnect();
-      auxPosts = await apiConnect.listarPosts(id);
+      postsApi = await apiConnect.listarPosts(id);
     }
 
     // BD
     var store = Store();
-    await Future.forEach(auxPosts, (Post post) async {
+    await Future.forEach(postsApi, (Post post) async {
       // Insere Usuário se n existir
       if (await store.findUsuario(post.idUsuario!) == null)
         await store.insertUsuario(post.usuarioPost!);

@@ -7,6 +7,7 @@ class Store {
   /// Instância Servico do BD
   final DBService _dbService = DBService();
 
+  /// Busca usuário por id
   Future<Usuario?> findUsuario(int id) async {
     var conn = await _dbService.database;
     var results = await conn.rawQuery(
@@ -18,6 +19,7 @@ class Store {
       Usuario.fromJson(results[0]) : null;
   }
 
+  /// Listar posts
   Future<List<Post>> listPosts() async {
     List<Post> lista = [];
     var conn = await _dbService.database;
@@ -32,6 +34,7 @@ class Store {
       },
     );
 
+    // Seta instância do usuário para cada post
     await Future.forEach(
         lista, (Post post) async =>
       post.usuarioPost = await findUsuario(post.idUsuario!)
@@ -40,6 +43,7 @@ class Store {
     return lista;
   }
 
+  /// Busca post por id
   Future<Post?> findPost(int id) async {
     var conn = await _dbService.database;
     var results = await conn.rawQuery(
