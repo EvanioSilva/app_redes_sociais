@@ -40,6 +40,16 @@ class Store {
     return lista;
   }
 
+  Future<Post?> findPost(int id) async {
+    var conn = await _dbService.database;
+    var results = await conn.rawQuery(
+        'select * from post where id = ?',
+        [id]
+    );
+
+    return results.length > 0 ? Post.fromJson(results[0]) : null;
+  }
+
   /// Insere um usuário na tabela
   Future<int?> insertUsuario(Usuario usuario) async {
     var conn = await _dbService.database;
@@ -52,16 +62,6 @@ class Store {
     } catch (e) {
       return null;
     }
-  }
-
-  Future<Post?> findPost(int id) async {
-    var conn = await _dbService.database;
-    var results = await conn.rawQuery(
-        'select * from post where id = ?',
-        [id]
-    );
-
-    return results.length > 0 ? Post.fromJson(results[0]) : null;
   }
 
   /// Insere um post na tabela
