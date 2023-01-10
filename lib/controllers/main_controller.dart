@@ -1,13 +1,26 @@
 import 'package:app_redes_sociais/api/api_connect.dart';
+import 'package:app_redes_sociais/data/db_service.dart';
+import 'package:app_redes_sociais/data/store.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:app_redes_sociais/models/usuario_model.dart';
 import 'package:app_redes_sociais/posts/posts_page.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sqflite/sqflite.dart';
 
 class MainController extends GetxController{
   // Lista de Posts
   List<Post> posts = [];
+
+  /// A referência ao objeto da conexão com o banco de dados
+  Database? database;
+
+  @override
+  void onInit() async {
+    // inicializa o BD
+    database = await DBService().database;
+  }
 
   Future<void> autenticar(String login, String senha) async {
     Usuario? usuario;
@@ -28,11 +41,39 @@ class MainController extends GetxController{
   }
 
   Future<void> listarPosts(int id) async {
-    ApiConnect apiConnect = ApiConnect();
-    posts = await apiConnect.listarPosts(id);
+
+    // Aux Api
+    List<Post> postsApi = [];
+
+    // Api
+    if (await conexaoWebOK()) {
+      ApiConnect apiConnect = ApiConnect();
+      postsApi = await apiConnect.listarPosts(id);
+    }
+
+    // Store BD
+    var store = Store();
+    await Future.forEach(postsApi, (Post post) async {
+      // Insere Usuário se n existir
+      if (await store.findUsuario(post.idUsuario!) == null)
+        await store.insertUsuario(post.usuarioPost!);
+
+      // Insere Post se n existir
+      if (await store.findPost(post.id!) == null)
+        await store.insertPost(post);
+
+    });
+
+    // Buscar lista de post do BD
+    posts = await store.listPosts();
 
     // Refresh UI
     update();
   }
 
+  /// Verifica se existe conexâo com a internet
+  Future<bool> conexaoWebOK() async {
+    var result = await Connectivity().checkConnectivity();
+    return result != ConnectivityResult.none;
+  }
 }

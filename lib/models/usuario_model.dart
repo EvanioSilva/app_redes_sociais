@@ -33,4 +33,26 @@ class Usuario {
     data['notificacoes'] = this.notificacoes;
     return data;
   }
+
+  Map<String, dynamic> toMap() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['login'] = this.login;
+    data['senha'] = this.senha;
+    data['nome'] = this.nome;
+    data['avatar'] = this.avatar;
+    data['notificacoes'] = this.notificacoes;
+    return data;
+  }
+
+  Usuario.fromMap(Map<String, dynamic> map) {
+    id = map['id'];
+    login = map['login'];
+    senha = map['senha'];
+    nome = map['nome'];
+    avatar = map['avatar'];
+    notificacoes = map['notificacoes'];
+  }
+
+
 }
