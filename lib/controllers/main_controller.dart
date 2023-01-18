@@ -76,4 +76,30 @@ class MainController extends GetxController{
     var result = await Connectivity().checkConnectivity();
     return result != ConnectivityResult.none;
   }
+
+  /// Adicionar Post
+  Future<void> addPost(Post post) async {
+    Post? postOut;
+
+    ApiConnect apiConnect = ApiConnect();
+
+    postOut = await apiConnect.addPost(post);
+
+    if (postOut == null) {
+      Get.snackbar('Erro', 'Falha adicionando Post');
+    }
+    // Tudo OK
+    else{
+
+      // Store BD
+      var store = Store();
+      await store.insertPost(postOut);
+
+      Get.snackbar('Sucesso', 'Post adicionado com sucesso',
+        backgroundColor: Colors.cyanAccent,
+      );
+      Get.offAll(PostsPage());
+    }
+  }
+
 }

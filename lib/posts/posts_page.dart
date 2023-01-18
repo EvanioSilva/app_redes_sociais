@@ -1,5 +1,6 @@
 import 'package:app_redes_sociais/controllers/main_controller.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
+import 'package:app_redes_sociais/posts/add_post_page.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -70,6 +71,15 @@ class PostsPage extends StatelessWidget {
                 );
               }
           ),
+
+          // FAB
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              Get.to(AddPostPage());
+            },
+          ),
+          // Rodapé
         );
       }
     );
