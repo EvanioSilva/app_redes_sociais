@@ -49,7 +49,6 @@ class ApiConnect extends GetConnect{
     return lista;
   }
 
-
   /// Método Adicionar Post
   Future<Post?> addPost (Post postAdd) async {
     String url = '$defaultUrl/post/add';
