@@ -23,14 +23,19 @@ class AddPostPage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20),
       child: Form(
-        key: GlobalKey<FormState>(),
+        key: controller.formKeyAddPost,
         child: Column(
           children: [
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Texto: '
               ),
-              onChanged: (value) => post.texto = value
+              onChanged: (value) => post.texto = value,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Favor informar texto';
+                }
+              }
             ),
             SizedBox(height: 40),
             SvgPicture.asset('assets/images/new_post.svg',

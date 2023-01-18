@@ -16,6 +16,9 @@ class MainController extends GetxController{
   /// A referência ao objeto da conexão com o banco de dados
   Database? database;
 
+  /// Key Formulário Add Post
+  final formKeyAddPost = GlobalKey<FormState>();
+
   @override
   void onInit() async {
     // inicializa o BD
@@ -80,6 +83,10 @@ class MainController extends GetxController{
   /// Adicionar Post
   Future<void> addPost(Post post) async {
     Post? postOut;
+
+    // Validar campos
+    if (!formKeyAddPost.currentState!.validate())
+      return;
 
     ApiConnect apiConnect = ApiConnect();
 
