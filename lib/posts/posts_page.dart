@@ -38,35 +38,53 @@ class PostsPage extends StatelessWidget {
           // Corpo
           body: GetBuilder<MainController>(
               builder: (context) {
-                return Container(
-                  child: ListView.builder(
-                    itemCount: controller.posts.length,
-                    itemBuilder: (context, index) {
-                      Post post = controller.posts[index];
-                      return ListTile(
-                        title: Text(post.texto!),
-                        trailing: IconButton(
-                          icon: Icon(Icons.send),
-                          onPressed: () {
-                            Get.to(DetalhesPostPage(
-                                titulo: post.texto!,
-                                imagem : post.imagem!,
-                            ));
-                            post.usuarioPost!.notificacoes = post.usuarioPost!.notificacoes! -1;
-                            controller.update();
-                          },
-                        ),
-                        leading: Badge(
-                          showBadge: post.usuarioPost!.notificacoes! > 0,
-                          badgeContent: Text(post.usuarioPost!.notificacoes!.toString(), style: TextStyle(color: Colors.white),),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.teal,
-                            child: SvgPicture.network(post.usuarioPost!.avatar!),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: ListView.separated(
+                      itemCount: controller.posts.length,
+                      itemBuilder: (context, index) {
+                        Post post = controller.posts[index];
+                        return ListTile(
+                          title: Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Text(post.texto!,
+                                  ),),
+                              Expanded(child: Text(post.data!,
+                                style: TextStyle(fontSize: 10),)),
+                            ],
                           ),
-                        ),
-                      );
-                    }
+                          trailing: IconButton(
+                            icon: Icon(Icons.send),
+                            onPressed: () {
+                              Get.to(DetalhesPostPage(
+                                  post: post
+                              ));
+                              post.usuarioPost!.notificacoes = post.usuarioPost!.notificacoes! -1;
+                              controller.update();
+                            },
+                          ),
+                          leading: Column(
+                            children: [
+                              Badge(
+                                showBadge: post.usuarioPost!.notificacoes! > 0,
+                                badgeContent: Text(post.usuarioPost!.notificacoes!.toString(), style: TextStyle(color: Colors.white),),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.teal,
+                                  child: SvgPicture.network(post.usuarioPost!.avatar!),
+                                ),
+                              ),
+                              Text(post.usuarioPost!.nome!)
+                            ],
+                          ),
+                        );
+                      }, separatorBuilder: (BuildContext context, int index) {
+                        return Divider();
+                    },
 
+                    ),
                   ),
                 );
               }

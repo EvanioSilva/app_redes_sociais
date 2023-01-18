@@ -1,12 +1,12 @@
+import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class DetalhesPostPage extends StatelessWidget {
 
-  final String? titulo;
-  final String? imagem;
+  final Post post;
 
-  const DetalhesPostPage({Key? key, this.titulo, this.imagem}) : super(key: key);
+  const DetalhesPostPage({Key? key, required this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class DetalhesPostPage extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Text(this.titulo!),
+                Text(post.texto!),
                 SizedBox(
                   height: 20,
                 ),
-                SvgPicture.network(imagem!,
+                SvgPicture.network(post.imagem!,
                   height: 200, width: 200,
                 ),
               ],
