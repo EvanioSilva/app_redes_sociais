@@ -16,6 +16,9 @@ class MainController extends GetxController{
   /// A referência ao objeto da conexão com o banco de dados
   Database? database;
 
+  /// Instância Key do Form AddPostPage
+  var frmKey = GlobalKey<FormState>();
+
   @override
   void onInit() async {
     // inicializa o BD
@@ -75,5 +78,36 @@ class MainController extends GetxController{
   Future<bool> conexaoWebOK() async {
     var result = await Connectivity().checkConnectivity();
     return result != ConnectivityResult.none;
+  }
+
+  /// Adicionad Post
+  Future<void> addPost(Post post) async {
+    Post? postOut;
+
+    // Validar Campos
+    if (!frmKey.currentState!.validate()) {
+      return;
+    }
+
+    ApiConnect apiConnect = ApiConnect();
+    postOut = await apiConnect.addPost(post);
+
+    if (postOut == null) {
+      Get.snackbar('Erro', 'Falha adicionando Post');
+    }
+    else { //Tudo OK
+      // armazenar no BD :  Store BD
+      var store = Store();
+
+      await store.insertPost(postOut);
+
+      Get.snackbar('Sucesso', 'Post adicionado com sucesso',
+        backgroundColor: Colors.cyanAccent,
+      );
+
+      Get.offAll(PostsPage());
+
+    }
+
   }
 }
