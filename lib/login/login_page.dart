@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
         },
         color: Colors.blue,
         height: 50,
-        minWidth: 400,
+        minWidth: Get.width,
         child: Text('Login',
             style: TextStyle(color: Colors.white),
           ),

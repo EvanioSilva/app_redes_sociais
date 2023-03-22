@@ -1,10 +1,8 @@
-import 'package:app_redes_sociais/posts/detalhes_post.dart';
-import 'package:badges/badges.dart';
+import 'package:app_redes_sociais/login/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'controllers/main_controller.dart';
-import 'login/login_page.dart';
+import 'examples/carousel/carousel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,6 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
