@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
 
+
 class MainController extends GetxController{
   // Lista de Posts
   List<Post> posts = [];

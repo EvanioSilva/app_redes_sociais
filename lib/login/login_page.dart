@@ -1,4 +1,5 @@
 import 'package:app_redes_sociais/controllers/main_controller.dart';
+import 'package:app_redes_sociais/examples/calendar/calendar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,6 +38,7 @@ class LoginPage extends StatelessWidget {
           MainController controller = Get.find();
           // Autenticação
           controller.autenticar(login, senha);
+          Get.to(() => CalendarPage());
         },
         color: Colors.blue,
         height: 50,
