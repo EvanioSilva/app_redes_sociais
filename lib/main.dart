@@ -1,10 +1,14 @@
+import 'package:app_redes_sociais/examples/calendar/calendar_page.dart';
 import 'package:app_redes_sociais/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'controllers/calendar_controller.dart';
 import 'controllers/main_controller.dart';
 import 'examples/carousel/carousel.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+void main() async {
+  await initializeDateFormatting('pt_BR');
   runApp(const MyApp());
 }
 
@@ -22,8 +26,9 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: BindingsBuilder((){
         Get.put(MainController());
+        Get.put(CalendarController());
       }),
-      home: LoginPage(),
+      home: CalendarPage(),
     );
   }
 }
