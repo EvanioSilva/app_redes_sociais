@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 import 'package:app_redes_sociais/controllers/main_controller.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:app_redes_sociais/posts/add_post_page.dart';
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -69,7 +67,7 @@ class PostsPage extends StatelessWidget {
                             controller.update();
                           },
                         ),
-                        leading: Badge(
+                        leading: badge.Badge(
                           showBadge: post.usuarioPost!.notificacoes! > 0,
                           badgeContent: Text(post.usuarioPost!.notificacoes!.toString(), style: TextStyle(color: Colors.white),),
                           child: Column(
