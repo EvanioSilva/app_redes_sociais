@@ -1,0 +1,20 @@
+# FLAVOR
+fvm flutter pub run flutter_flavorizr
+
+
+# Run
+fvm flutter run --flavor app_redes_sociais -t lib/main_redes_sociais.dart
+fvm flutter run --flavor app_curso -t lib/main_curso.dart
+
+# Release
+fvm flutter run --release --flavor app_redes_sociais -t lib/main_redes_sociais.dart
+fvm flutter run --release --flavor app_curso -t lib/main_curso.dart
+
+# Apk
+fvm flutter build apk --release --flavor app_redes_sociais -t lib/main_redes_sociais.dart
+fvm flutter build apk --release --flavor app_curso -t lib/main_curso.dart
+
+# Bundle
+fvm flutter build appbundle --flavor app_redes_sociais -t lib/main_redes_sociais.dart
+fvm flutter build appbundle --flavor app_curso -t lib/main_curso.dart
+

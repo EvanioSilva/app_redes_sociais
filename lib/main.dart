@@ -1,5 +1,3 @@
-import 'package:app_redes_sociais/examples/calendar/calendar_page.dart';
-import 'package:app_redes_sociais/login/login_page.dart';
 import 'package:app_redes_sociais/posts/posts_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,8 +5,10 @@ import 'controllers/calendar_controller.dart';
 import 'controllers/main_controller.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-void main() async {
-  await initializeDateFormatting('pt_BR');
+import 'flavors.dart';
+
+void initializaApp()  {
+  initializeDateFormatting('pt_BR');
   runApp(const MyApp());
 }
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'App Redes Sociais',
+      title: F.title,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
