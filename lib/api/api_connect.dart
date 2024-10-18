@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class ApiConnect extends GetConnect{
 
   /// url default da api
-  String defaultUrl = 'https://pray4ever.com/curso';
+  String defaultUrl = 'http://pray4ever.net/curso';
 
   /// Método Autenticação Usuário
   Future<Usuario?> autenticar (String login, String senha) async {

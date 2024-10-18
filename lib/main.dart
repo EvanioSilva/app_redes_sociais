@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         Get.put(MainController());
         Get.put(CalendarController());
       }),
-      home: PostsPage(),
+      home: LoginPage(),
     );
   }
 }
