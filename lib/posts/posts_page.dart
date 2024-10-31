@@ -5,6 +5,7 @@ import 'package:badges/badges.dart' as badge;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import '../relatorio_pdf.dart';
 import 'detalhes_post.dart';
 
 class PostsPage extends StatelessWidget {
@@ -22,14 +23,20 @@ class PostsPage extends StatelessWidget {
         return Scaffold(
           // Cabeçalho
           appBar: AppBar(
+
               title:
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/feliz.svg',
+                  SvgPicture.asset('assets/images/feliz.svg', height: 40, width: 40,
                     color: Colors.white,
                   ),
-                  Text('App de Redes Socias'),
+                  Text('App'),
+
+                  TextButton(onPressed: () => gerarRPT('view'), child: Text('pdf - view')),
+                  TextButton(onPressed: () => gerarRPT('share'), child: Text('pdf - share')),
+                  TextButton(onPressed: () => gerarRPT('save'), child: Text('pdf - save')),
+
                 ],
               )
 
@@ -102,4 +109,11 @@ class PostsPage extends StatelessWidget {
       }
     );
   }
+
+
+  void gerarRPT(tipo) async {
+    RelatorioPdf report =  RelatorioPdf();
+    await report.geraRelatorio(tipo);
+  }
+
 }
