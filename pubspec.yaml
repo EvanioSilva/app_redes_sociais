@@ -42,6 +42,7 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_carousel_slider: ^1.0.7
   table_calendar: ^3.0.9
+  flutter_flavorizr:
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/kiwi/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -95,3 +97,33 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "flavor-type"
+    ios:
+
+  flavors:
+    # KIWI #
+    kiwi:
+      app:
+        name: "App Kiwi"
+
+      android:
+        applicationId: "br.com.visionti.rede_social_kiwi"
+        icon: "assets/kiwi/icon.jpg"
+
+      ios:
+        bundleId: "br.com.visionti.rede-social-kiwi"
+        icon: "assets/kiwi/icon.jpg"
+
+#  instructions:
+#    - android:androidManifest
+#    - android:buildGradle
+#    - android:dummyAssets
+#    - android:icons
+#    - flutter:flavors
+#    - flutter:app
+#    - flutter:targets

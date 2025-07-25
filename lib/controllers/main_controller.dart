@@ -80,7 +80,7 @@ class MainController extends GetxController{
     return result != ConnectivityResult.none;
   }
 
-  /// Adicionad Post
+  /// Adiciona Post
   Future<void> addPost(Post post) async {
     Post? postOut;
 
