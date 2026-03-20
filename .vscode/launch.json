@@ -1,0 +1,51 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter (debug)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      "flutterMode": "debug",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Flutter (profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      "flutterMode": "profile",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Flutter (release)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      "flutterMode": "release",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Flutter Web (debug - Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "cwd": "${workspaceFolder}",
+      "flutterMode": "debug",
+      "deviceId": "chrome",
+      "console": "debugConsole"
+    },
+    {
+      "name": "Dart: Debug sem Flutter (arquivo atual)",
+      "request": "launch",
+      "type": "dart",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "debugConsole"
+    }
+  ]
+}
+
