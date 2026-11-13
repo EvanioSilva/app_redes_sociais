@@ -12,6 +12,9 @@
 # API PHP local / HelioHost (credenciais)
 /test/
 
+# Documentação do treinamento
+/docs/
+
 # IntelliJ related
 *.iml
 *.ipr

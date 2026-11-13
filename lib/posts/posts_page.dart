@@ -1,7 +1,6 @@
 import 'package:app_redes_sociais/controllers/main_controller.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:app_redes_sociais/posts/add_post_page.dart';
-import 'package:app_redes_sociais/widgets/svg_imagem.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_svg/flutter_svg.dart';
@@ -74,7 +73,7 @@ class PostsPage extends StatelessWidget {
                                 badgeContent: Text(post.usuarioPost!.notificacoes!.toString(), style: TextStyle(color: Colors.white),),
                                 child: CircleAvatar(
                                   backgroundColor: Colors.teal,
-                                  child: SvgImagem(post.usuarioPost!.avatar!),
+                                  child: SvgPicture.network(post.usuarioPost!.avatar!),
                                 ),
                               ),
                               Text(post.usuarioPost!.nome!)

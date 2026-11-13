@@ -1,6 +1,6 @@
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:flutter/material.dart';
-import 'package:app_redes_sociais/widgets/svg_imagem.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DetalhesPostPage extends StatelessWidget {
 
@@ -22,7 +22,7 @@ class DetalhesPostPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                SvgImagem(post.imagem!,
+                SvgPicture.network(post.imagem!,
                   height: 200, width: 200,
                 ),
               ],
