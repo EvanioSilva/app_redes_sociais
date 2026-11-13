@@ -1,6 +1,6 @@
 import 'package:app_redes_sociais/posts/detalhes_post.dart';
 import 'package:badges/badges.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'controllers/main_controller.dart';

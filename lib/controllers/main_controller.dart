@@ -4,7 +4,7 @@ import 'package:app_redes_sociais/data/store.dart';
 import 'package:app_redes_sociais/models/post_model.dart';
 import 'package:app_redes_sociais/models/usuario_model.dart';
 import 'package:app_redes_sociais/posts/posts_page.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
@@ -77,7 +77,7 @@ class MainController extends GetxController{
   /// Verifica se existe conexâo com a internet
   Future<bool> conexaoWebOK() async {
     var result = await Connectivity().checkConnectivity();
-    return result != ConnectivityResult.none;
+    return !result.contains(ConnectivityResult.none);
   }
 
   /// Adicionar Post

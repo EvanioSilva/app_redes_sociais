@@ -1,6 +1,7 @@
 import 'usuario_model.dart';
 
-class Post {
+class 
+Post {
   int? id;
   String? texto;
   int? idUsuario;

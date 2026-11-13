@@ -9,6 +9,9 @@
 .history
 .svn/
 
+# API PHP local / HelioHost (credenciais)
+/test/
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -41,6 +44,7 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio will place build artifacts here
+/android/build/
 /android/app/debug
 /android/app/profile
 /android/app/release
